@@ -35,6 +35,7 @@
 | Дата | ОС | Участник | Проверка | Результат |
 |---|---|---|---|---|
 | 2026-11-01 | Windows | Backend Developer | Docker 29.9.2 и Compose 5.6.1 обнаружены; Maven на хосте не требуется | Docker build выполняет `mvn verify` внутри build-слоя |
+| 2026-11-01 | macOS 14.8.4 | Frontend Developer | `docker compose config`, `docker compose up --build`, health-check, маршруты frontend, `docker compose logs`, `docker compose down` | Успешно. Найдено и исправлено: `vite preview` под пользователем `node` не мог писать в `node_modules/.vite-temp` (EACCES) — `/app` передан пользователю `node`. Порт 8080 хоста занят сторонним процессом — health проверен из сети Compose и через временный порт |
 
 ## 6. Структура проекта
 
@@ -45,7 +46,10 @@ backend/                 Spring Boot REST API
   src/test/java/         backend-тесты
 docs/                    паспорт, API-контракт и UI-flow
 .github/workflows/       CI-проверки
-frontend/                React SPA (создаёт Frontend Developer)
+frontend/                React SPA (Vite, React Router, Axios)
+  src/api/               Axios-клиент и функции endpoint'ов
+  src/pages/             страницы
+  src/routes/            маршруты
 ```
 
 ## 7. Карта функций
@@ -58,9 +62,20 @@ frontend/                React SPA (создаёт Frontend Developer)
 |---|---|
 | Git-flow | `main` защищена, `lab-1` интеграционная, личные ветки — рабочие |
 | Code review | Каждый PR требует review второго участника |
-| CI | Maven build для backend; frontend workflow добавляет Frontend Developer |
-| Issue tracking | Product issue и вопросы контракта ведутся в GitHub Issues |
+| CI | Docker build для backend (`backend-ci.yml`) и frontend (`frontend-ci.yml`) |
+| Issue tracking | Product issue и вопросы контракта ведутся в GitHub Issues по шаблонам `.github/ISSUE_TEMPLATE/` |
 | Версии | Версии backend-зависимостей закреплены в `backend/pom.xml` |
+
+### Шаблоны и метки GitHub
+
+| Метка | Цвет | Когда ставить | Шаблон |
+|---|---|---|---|
+| `review` | `#0e8a16` | PR готов к review второго участника | `.github/pull_request_template.md` |
+| `bug` | `#d73a4a` | Сборка, запуск или поведение не соответствует ожидаемому; issue не закрывается до исправления | `bug_report.md` |
+| `change-request` | `#fbca04` | Нужно изменить API-контракт, UI-flow или требования | `change_request.md` |
+| `question` | `#d876e3` | Неясность в контракте или требованиях | `question.md` |
+
+Каждый PR ссылается на issue (`Closes #N`) и получает метку `review` перед назначением reviewer.
 
 ## 9. Выполнимость и план семестра
 
