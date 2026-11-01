@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - 'backend/**'
+      - 'compose.yaml'
       - '.github/workflows/backend-ci.yml'
   push:
     branches: [lab-1, lab-1-backend]
     paths:
       - 'backend/**'
+      - 'compose.yaml'
       - '.github/workflows/backend-ci.yml'
 
 permissions:
@@ -19,10 +21,5 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-          cache: maven
-      - name: Build and test backend
-        run: mvn --batch-mode --file backend/pom.xml verify
+      - name: Build and test backend in Docker
+        run: docker build --tag coworking-room-booking-backend:ci backend

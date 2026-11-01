@@ -1,0 +1,13 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - backend-h2-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  backend-h2-data:

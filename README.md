@@ -4,19 +4,16 @@
 
 ## Предварительные требования
 
-- Java 21;
-- Maven 3.9+;
+- Docker Desktop 4+ с запущенным Docker Engine;
 - Node.js 22+ и npm 10+ для будущего frontend-модуля.
 
 ## Запуск backend
 
 ```bash
-cd backend
-mvn spring-boot:run
-curl http://localhost:8080/actuator/health
+docker compose up --build
 ```
 
-При первом запуске используется файловая H2 БД в `backend/data/`. Профиль `test` использует in-memory H2.
+Сборка Maven и тесты выполняются внутри Docker-образа; локальные Java и Maven не нужны. Данные H2 сохраняются в Docker volume `backend-h2-data`. Для остановки контейнера используйте `docker compose down`.
 
 ## Проверка работоспособности
 
@@ -26,9 +23,9 @@ curl http://localhost:8080/actuator/health
 
 ## Протокол проверки запуска
 
-| Дата | ОС | Проверял | Java / Maven | Результат |
+| Дата | ОС | Проверял | Docker | Результат |
 |---|---|---|---|---|
-| 2026-11-01 | Windows | Backend Developer | Java 21.0.4 / Maven: требуется установить локально | Исходники подготовлены; локальная сборка ожидает Maven 3.9+ |
+| 2026-11-01 | Windows | Backend Developer | Docker 29.9.2 / Compose 5.6.1 | Конфигурация подготовлена; проверка образа выполняется в CI |
 
 ## Статус требований
 
