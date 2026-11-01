@@ -1,0 +1,27 @@
+name: Frontend CI
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'compose.yaml'
+      - '.github/workflows/frontend-ci.yml'
+  push:
+    branches: [lab-1, lab-1-frontend]
+    paths:
+      - 'frontend/**'
+      - 'compose.yaml'
+      - '.github/workflows/frontend-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Compose configuration
+        run: docker compose config --quiet
+      - name: Install and build frontend in Docker
+        run: docker build --tag coworking-room-booking-frontend:ci frontend
