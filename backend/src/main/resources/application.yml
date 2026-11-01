@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: room-booking-api
+  datasource:
+    url: jdbc:h2:file:./data/room-booking;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      # Development-only schema generation. Replace with Flyway migrations in Lab 2.
+      ddl-auto: update
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
