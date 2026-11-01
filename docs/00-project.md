@@ -59,8 +59,19 @@ frontend/                React SPA (создаёт Frontend Developer)
 | Git-flow | `main` защищена, `lab-1` интеграционная, личные ветки — рабочие |
 | Code review | Каждый PR требует review второго участника |
 | CI | Maven build для backend; frontend workflow добавляет Frontend Developer |
-| Issue tracking | Product issue и вопросы контракта ведутся в GitHub Issues |
+| Issue tracking | Product issue и вопросы контракта ведутся в GitHub Issues по шаблонам `.github/ISSUE_TEMPLATE/` |
 | Версии | Версии backend-зависимостей закреплены в `backend/pom.xml` |
+
+### Шаблоны и метки GitHub
+
+| Метка | Цвет | Когда ставить | Шаблон |
+|---|---|---|---|
+| `review` | `#0e8a16` | PR готов к review второго участника | `.github/pull_request_template.md` |
+| `bug` | `#d73a4a` | Сборка, запуск или поведение не соответствует ожидаемому; issue не закрывается до исправления | `bug_report.md` |
+| `change-request` | `#fbca04` | Нужно изменить API-контракт, UI-flow или требования | `change_request.md` |
+| `question` | `#d876e3` | Неясность в контракте или требованиях | `question.md` |
+
+Каждый PR ссылается на issue (`Closes #N`) и получает метку `review` перед назначением reviewer.
 
 ## 9. Выполнимость и план семестра
 
