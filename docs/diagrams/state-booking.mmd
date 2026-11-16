@@ -1,10 +1,10 @@
 stateDiagram-v2
-    [*] --> PENDING : employee creates booking
-    PENDING --> CONFIRMED : admin confirms
-    PENDING --> REJECTED : admin rejects
-    PENDING --> CANCELLED : employee cancels
-    CONFIRMED --> CANCELLED : employee cancels before start
-    CONFIRMED --> COMPLETED : slot ends
+    [*] --> PENDING : сотрудник создает заявку
+    PENDING --> CONFIRMED : администратор подтверждает
+    PENDING --> REJECTED : администратор отклоняет
+    PENDING --> CANCELLED : сотрудник отменяет заявку
+    CONFIRMED --> CANCELLED : отмена до начала слота
+    CONFIRMED --> COMPLETED : временной слот завершен
     COMPLETED --> [*]
     REJECTED --> [*]
     CANCELLED --> [*]

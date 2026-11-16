@@ -1,38 +1,38 @@
 erDiagram
-    USER ||--o{ BOOKING : creates
-    USER ||--o{ REVIEW : writes
-    ROOM ||--o{ BOOKING : reserved_for
-    ROOM ||--o{ REVIEW : receives
-    BOOKING ||--o| REVIEW : has
+    USER ||--o{ BOOKING : создает
+    USER ||--o{ REVIEW : пишет
+    ROOM ||--o{ BOOKING : бронируется
+    ROOM ||--o{ REVIEW : получает
+    BOOKING ||--o| REVIEW : имеет
 
     USER {
-        Long id
-        String email
-        String passwordHash
-        String displayName
-        Role role
+        Long id "идентификатор"
+        String email "электронная почта"
+        String passwordHash "хэш пароля"
+        String displayName "отображаемое имя"
+        Role role "роль"
     }
     ROOM {
-        Long id
-        String name
-        int capacity
-        String equipment
-        boolean archived
+        Long id "идентификатор"
+        String name "название"
+        int capacity "вместимость"
+        String equipment "оборудование"
+        boolean archived "архивирована"
     }
     BOOKING {
-        Long id
-        Long userId
-        Long roomId
-        OffsetDateTime startsAt
-        OffsetDateTime endsAt
-        BookingStatus status
+        Long id "идентификатор"
+        Long userId "идентификатор пользователя"
+        Long roomId "идентификатор комнаты"
+        OffsetDateTime startsAt "начало"
+        OffsetDateTime endsAt "окончание"
+        BookingStatus status "статус"
     }
     REVIEW {
-        Long id
-        Long authorId
-        Long roomId
-        Long bookingId
-        int rating
-        String comment
-        OffsetDateTime createdAt
+        Long id "идентификатор"
+        Long authorId "идентификатор автора"
+        Long roomId "идентификатор комнаты"
+        Long bookingId "идентификатор брони"
+        int rating "оценка"
+        String comment "комментарий"
+        OffsetDateTime createdAt "дата создания"
     }
