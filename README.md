@@ -21,6 +21,18 @@ docker compose up --build
 2. Открыть `http://localhost:8080/actuator/health`.
 3. Ожидаемый ответ: `{"status":"UP"}`.
 
+## Backend-тесты
+
+Тесты и сборка запускаются в Docker из каталога `backend`:
+
+```powershell
+docker build --target test --tag coworking-room-booking-backend:test backend
+docker build --tag coworking-room-booking-backend:ci backend
+docker compose up --build
+```
+
+Стадия `test` выполняет `mvn test`; финальная сборка выполняет `mvn verify`.
+
 ## Протокол проверки запуска
 
 | Дата | ОС | Проверял | Docker | Результат |
