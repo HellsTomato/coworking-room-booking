@@ -38,4 +38,40 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private BookingStatus status;
+
+    protected Booking() {
+    }
+
+    public Booking(User user, Room room, OffsetDateTime startsAt, OffsetDateTime endsAt,
+                   BookingStatus status) {
+        this.user = user;
+        this.room = room;
+        this.startsAt = startsAt;
+        this.endsAt = endsAt;
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public OffsetDateTime getStartsAt() {
+        return startsAt;
+    }
+
+    public OffsetDateTime getEndsAt() {
+        return endsAt;
+    }
+
+    public BookingStatus getStatus() {
+        return status;
+    }
 }

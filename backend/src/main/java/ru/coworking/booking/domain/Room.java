@@ -26,4 +26,34 @@ public class Room {
 
     @Column(nullable = false)
     private boolean archived;
+
+    protected Room() {
+    }
+
+    public Room(String name, int capacity, String equipment, boolean archived) {
+        this.name = name;
+        this.capacity = capacity;
+        this.equipment = equipment;
+        this.archived = archived;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
 }

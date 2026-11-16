@@ -15,6 +15,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/actuator/health", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/v1/bookings").hasRole("EMPLOYEE")
                         .anyRequest().denyAll())
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
                 .build();
