@@ -21,5 +21,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - name: Build and test backend in Docker
+      - name: Run backend tests in Docker
+        run: docker build --target test --tag coworking-room-booking-backend:test backend
+      - name: Build backend image
         run: docker build --tag coworking-room-booking-backend:ci backend

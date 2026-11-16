@@ -6,13 +6,18 @@ COPY pom.xml ./
 RUN mvn --batch-mode dependency:go-offline
 
 COPY src ./src
+
+FROM build AS test
+RUN mvn --batch-mode test
+
+FROM build AS package
 RUN mvn --batch-mode verify
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 RUN addgroup --system spring && adduser --system --ingroup spring spring
-COPY --from=build /workspace/target/room-booking-api-0.1.0-SNAPSHOT.jar app.jar
+COPY --from=package /workspace/target/room-booking-api-0.1.0-SNAPSHOT.jar app.jar
 RUN mkdir /app/data && chown -R spring:spring /app
 
 USER spring

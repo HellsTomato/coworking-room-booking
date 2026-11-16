@@ -1,0 +1,38 @@
+erDiagram
+    USER ||--o{ BOOKING : creates
+    USER ||--o{ REVIEW : writes
+    ROOM ||--o{ BOOKING : reserved_for
+    ROOM ||--o{ REVIEW : receives
+    BOOKING ||--o| REVIEW : has
+
+    USER {
+        Long id
+        String email
+        String passwordHash
+        String displayName
+        Role role
+    }
+    ROOM {
+        Long id
+        String name
+        int capacity
+        String equipment
+        boolean archived
+    }
+    BOOKING {
+        Long id
+        Long userId
+        Long roomId
+        OffsetDateTime startsAt
+        OffsetDateTime endsAt
+        BookingStatus status
+    }
+    REVIEW {
+        Long id
+        Long authorId
+        Long roomId
+        Long bookingId
+        int rating
+        String comment
+        OffsetDateTime createdAt
+    }

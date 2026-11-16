@@ -1,0 +1,11 @@
+flowchart LR
+    employee[EMPLOYEE]
+    admin[ADMIN]
+    app((Coworking Room Booking System))
+    db[(H2 / PostgreSQL)]
+    ci[GitHub Actions]
+
+    employee -->|register, login, search, book, cancel, review| app
+    admin -->|manage rooms and booking decisions| app
+    app -->|persist users, rooms, bookings, reviews| db
+    ci -->|build and test| app

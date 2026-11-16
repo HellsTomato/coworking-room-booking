@@ -29,4 +29,34 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;
+
+    protected User() {
+    }
+
+    public User(String email, String passwordHash, String displayName, Role role) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.displayName = displayName;
+        this.role = role;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public Role getRole() {
+        return role;
+    }
 }

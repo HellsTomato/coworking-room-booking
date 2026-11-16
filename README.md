@@ -21,6 +21,18 @@ docker compose up --build
 2. Открыть `http://localhost:8080/actuator/health`.
 3. Ожидаемый ответ: `{"status":"UP"}`.
 
+## Backend-тесты
+
+Тесты и сборка запускаются в Docker из каталога `backend`:
+
+```powershell
+docker build --target test --tag coworking-room-booking-backend:test backend
+docker build --tag coworking-room-booking-backend:ci backend
+docker compose up --build
+```
+
+Стадия `test` выполняет `mvn test`; финальная сборка выполняет `mvn verify`.
+
 ## Протокол проверки запуска
 
 | Дата | ОС | Проверял | Docker | Результат |
@@ -35,3 +47,12 @@ docker compose up --build
 | Четыре сущности | Каркас создан |
 | Восемь функций | Спланировано в API-контракте |
 | JWT и бизнес-логика | ЛР №2–4 |
+
+### Статус функциональных требований
+
+| ID | Формулировка | Приоритет | Состояние |
+|---|---|---|---|
+| FR-1 | Регистрация, вход и JWT для ролей `EMPLOYEE` и `ADMIN` | Обязательно | Нужно сделать |
+| FR-2 | Поиск доступных комнат без пересечений | Обязательно | Нужно сделать |
+| FR-3 | Создание брони на выбранный слот | Обязательно | Нужно сделать |
+| FR-4 | Отмена собственной брони | Обязательно | Нужно сделать |
