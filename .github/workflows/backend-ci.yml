@@ -2,16 +2,8 @@ name: Backend CI
 
 on:
   pull_request:
-    paths:
-      - 'backend/**'
-      - 'compose.yaml'
-      - '.github/workflows/backend-ci.yml'
   push:
-    branches: [lab-1, lab-1-backend]
-    paths:
-      - 'backend/**'
-      - 'compose.yaml'
-      - '.github/workflows/backend-ci.yml'
+    branches: [main, 'lab-*']
 
 permissions:
   contents: read
