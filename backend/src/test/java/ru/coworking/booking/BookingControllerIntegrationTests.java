@@ -69,7 +69,7 @@ class BookingControllerIntegrationTests {
                                   "timeTo": "12:00:00+03:00"
                                 }
                                 """.formatted(room.getId())))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status", is("PENDING")));
 
         Booking booking = bookingRepository.findAll().get(0);

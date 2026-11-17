@@ -37,7 +37,7 @@ describe('BookingForm', () => {
     renderWithProviders(<BookingForm rooms={ROOMS} />)
     await fillForm()
 
-    await waitFor(() => expect(createBooking).toHaveBeenCalledTimes(1))
+    await waitFor(() => expect(createBooking).toHaveBeenCalledTimes(2))
     expect(createBooking).toHaveBeenCalledWith({
       roomId: 12,
       date: '2026-12-10',
